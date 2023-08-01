@@ -1,5 +1,5 @@
 [package]
-name = "blake3"
+name = "iroh-blake3"
 version = "1.4.1"
 authors = ["Jack O'Connor <oconnor663@gmail.com>", "Samuel Neves"]
 description = "the BLAKE3 hash function"
