@@ -658,10 +658,12 @@ fn test_zeroize() {
     assert_eq!(hasher.chunk_state.buf_len, 0);
     assert_eq!(hasher.chunk_state.blocks_compressed, 0);
     assert_eq!(hasher.chunk_state.flags, 0);
-    assert!(matches!(hasher.chunk_state.platform, crate::Platform::Portable));
+    assert!(matches!(
+        hasher.chunk_state.platform,
+        crate::Platform::Portable
+    ));
     assert_eq!(hasher.key, [0; 8]);
     assert_eq!(&*hasher.cv_stack, &[[0u8; 32]; 0]);
-
 
     let mut output_reader = crate::OutputReader {
         inner: crate::Output {
@@ -675,14 +677,15 @@ fn test_zeroize() {
         position_within_block: 42,
     };
 
-
     output_reader.zeroize();
     assert_eq!(output_reader.inner.input_chaining_value, [0; 8]);
     assert_eq!(output_reader.inner.block, [0; 64]);
     assert_eq!(output_reader.inner.counter, 0);
     assert_eq!(output_reader.inner.block_len, 0);
     assert_eq!(output_reader.inner.flags, 0);
-    assert!(matches!(output_reader.inner.platform, crate::Platform::Portable));
+    assert!(matches!(
+        output_reader.inner.platform,
+        crate::Platform::Portable
+    ));
     assert_eq!(output_reader.position_within_block, 0);
-
 }
