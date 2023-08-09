@@ -33,20 +33,18 @@ pub unsafe fn hash_many<const N: usize>(
 }
 
 pub mod ffi {
-    extern "C" {
-        pub fn blake3_hash_many_avx2(
-            inputs: *const *const u8,
-            num_inputs: usize,
-            blocks: usize,
-            key: *const u32,
-            counter: u64,
-            increment_counter: bool,
-            flags: u8,
-            flags_start: u8,
-            flags_end: u8,
-            out: *mut u8,
-        );
-    }
+    pub fn blake3_hash_many_avx2(
+        inputs: *const *const u8,
+        num_inputs: usize,
+        blocks: usize,
+        key: *const u32,
+        counter: u64,
+        increment_counter: bool,
+        flags: u8,
+        flags_start: u8,
+        flags_end: u8,
+        out: *mut u8,
+    );
 }
 
 #[cfg(test)]

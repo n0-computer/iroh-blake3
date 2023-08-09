@@ -4,6 +4,7 @@
 //! # Examples
 //!
 //! ```
+//! # use iroh_blake3 as blake3;
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
 //! // Hash an input all at once.
 //! let hash1 = blake3::hash(b"foobarbaz");
@@ -931,6 +932,7 @@ fn parent_node_output(
 /// # Examples
 ///
 /// ```
+/// # use iroh_blake3 as blake3;
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// // Hash an input incrementally.
 /// let mut hasher = blake3::Hasher::new();
