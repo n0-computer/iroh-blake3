@@ -8,7 +8,13 @@ pub unsafe fn compress_in_place(
     counter: u64,
     flags: u8,
 ) {
-    ffi::blake3_compress_in_place_avx512(cv.as_mut_ptr(), block.as_ptr(), block_len, counter, flags)
+    ffi::iroh_blake3_compress_in_place_avx512(
+        cv.as_mut_ptr(),
+        block.as_ptr(),
+        block_len,
+        counter,
+        flags,
+    )
 }
 
 // Unsafe because this may only be called on platforms supporting AVX-512.
@@ -20,7 +26,7 @@ pub unsafe fn compress_xof(
     flags: u8,
 ) -> [u8; 64] {
     let mut out = [0u8; 64];
-    ffi::blake3_compress_xof_avx512(
+    ffi::iroh_blake3_compress_xof_avx512(
         cv.as_ptr(),
         block.as_ptr(),
         block_len,
@@ -62,14 +68,14 @@ pub unsafe fn hash_many<const N: usize>(
 
 pub mod ffi {
     extern "C" {
-        pub fn blake3_compress_in_place_avx512(
+        pub fn iroh_blake3_compress_in_place_avx512(
             cv: *mut u32,
             block: *const u8,
             block_len: u8,
             counter: u64,
             flags: u8,
         );
-        pub fn blake3_compress_xof_avx512(
+        pub fn iroh_blake3_compress_xof_avx512(
             cv: *const u32,
             block: *const u8,
             block_len: u8,

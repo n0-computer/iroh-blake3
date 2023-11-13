@@ -162,7 +162,7 @@ static
   }
 }
 
-void blake3_compress_in_place(uint32_t cv[8],
+void iroh_blake3_compress_in_place(uint32_t cv[8],
                               const uint8_t block[BLAKE3_BLOCK_LEN],
                               uint8_t block_len, uint64_t counter,
                               uint8_t flags) {
@@ -171,27 +171,27 @@ void blake3_compress_in_place(uint32_t cv[8],
   MAYBE_UNUSED(features);
 #if !defined(BLAKE3_NO_AVX512)
   if (features & AVX512VL) {
-    blake3_compress_in_place_avx512(cv, block, block_len, counter, flags);
+    iroh_blake3_compress_in_place_avx512(cv, block, block_len, counter, flags);
     return;
   }
 #endif
 #if !defined(BLAKE3_NO_SSE41)
   if (features & SSE41) {
-    blake3_compress_in_place_sse41(cv, block, block_len, counter, flags);
+    iroh_blake3_compress_in_place_sse41(cv, block, block_len, counter, flags);
     return;
   }
 #endif
 #if !defined(BLAKE3_NO_SSE2)
   if (features & SSE2) {
-    blake3_compress_in_place_sse2(cv, block, block_len, counter, flags);
+    iroh_blake3_compress_in_place_sse2(cv, block, block_len, counter, flags);
     return;
   }
 #endif
 #endif
-  blake3_compress_in_place_portable(cv, block, block_len, counter, flags);
+  iroh_blake3_compress_in_place_portable(cv, block, block_len, counter, flags);
 }
 
-void blake3_compress_xof(const uint32_t cv[8],
+void iroh_blake3_compress_xof(const uint32_t cv[8],
                          const uint8_t block[BLAKE3_BLOCK_LEN],
                          uint8_t block_len, uint64_t counter, uint8_t flags,
                          uint8_t out[64]) {
@@ -200,24 +200,24 @@ void blake3_compress_xof(const uint32_t cv[8],
   MAYBE_UNUSED(features);
 #if !defined(BLAKE3_NO_AVX512)
   if (features & AVX512VL) {
-    blake3_compress_xof_avx512(cv, block, block_len, counter, flags, out);
+    iroh_blake3_compress_xof_avx512(cv, block, block_len, counter, flags, out);
     return;
   }
 #endif
 #if !defined(BLAKE3_NO_SSE41)
   if (features & SSE41) {
-    blake3_compress_xof_sse41(cv, block, block_len, counter, flags, out);
+    iroh_blake3_compress_xof_sse41(cv, block, block_len, counter, flags, out);
     return;
   }
 #endif
 #if !defined(BLAKE3_NO_SSE2)
   if (features & SSE2) {
-    blake3_compress_xof_sse2(cv, block, block_len, counter, flags, out);
+    iroh_blake3_compress_xof_sse2(cv, block, block_len, counter, flags, out);
     return;
   }
 #endif
 #endif
-  blake3_compress_xof_portable(cv, block, block_len, counter, flags, out);
+  iroh_blake3_compress_xof_portable(cv, block, block_len, counter, flags, out);
 }
 
 void blake3_hash_many(const uint8_t *const *inputs, size_t num_inputs,

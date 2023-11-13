@@ -1,9 +1,9 @@
 public _blake3_hash_many_sse2
 public blake3_hash_many_sse2
-public blake3_compress_in_place_sse2
-public _blake3_compress_in_place_sse2
-public blake3_compress_xof_sse2
-public _blake3_compress_xof_sse2
+public iroh_blake3_compress_in_place_sse2
+public _iroh_blake3_compress_in_place_sse2
+public iroh_blake3_compress_xof_sse2
+public _iroh_blake3_compress_xof_sse2
 
 _TEXT   SEGMENT ALIGN(16) 'CODE'
 
@@ -2037,8 +2037,8 @@ endroundloop1:
 _blake3_hash_many_sse2 ENDP
 blake3_hash_many_sse2 ENDP
 
-blake3_compress_in_place_sse2 PROC
-_blake3_compress_in_place_sse2 PROC
+iroh_blake3_compress_in_place_sse2 PROC
+_iroh_blake3_compress_in_place_sse2 PROC
         sub     rsp, 120
         movdqa  xmmword ptr [rsp], xmm6
         movdqa  xmmword ptr [rsp+10H], xmm7
@@ -2164,12 +2164,12 @@ _blake3_compress_in_place_sse2 PROC
         movdqa  xmm15, xmmword ptr [rsp+60H]
         add     rsp, 120
         ret
-_blake3_compress_in_place_sse2 ENDP
-blake3_compress_in_place_sse2 ENDP
+_iroh_blake3_compress_in_place_sse2 ENDP
+iroh_blake3_compress_in_place_sse2 ENDP
 
 ALIGN 16
-blake3_compress_xof_sse2 PROC
-_blake3_compress_xof_sse2 PROC
+iroh_blake3_compress_xof_sse2 PROC
+_iroh_blake3_compress_xof_sse2 PROC
         sub     rsp, 120
         movdqa  xmmword ptr [rsp], xmm6
         movdqa  xmmword ptr [rsp+10H], xmm7
@@ -2302,8 +2302,8 @@ _blake3_compress_xof_sse2 PROC
         movdqa  xmm15, xmmword ptr [rsp+60H]
         add     rsp, 120
         ret
-_blake3_compress_xof_sse2 ENDP
-blake3_compress_xof_sse2 ENDP
+_iroh_blake3_compress_xof_sse2 ENDP
+iroh_blake3_compress_xof_sse2 ENDP
 
 _TEXT ENDS
 

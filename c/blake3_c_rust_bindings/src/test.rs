@@ -110,7 +110,7 @@ pub fn test_compress_fn(compress_in_place_fn: CompressInPlaceFn, compress_xof_fn
 
     let mut portable_out = [0; 64];
     unsafe {
-        crate::ffi::blake3_compress_xof_portable(
+        crate::ffi::iroh_blake3_compress_xof_portable(
             initial_state.as_ptr(),
             block.as_ptr(),
             block_len,
@@ -151,8 +151,8 @@ pub fn test_compress_fn(compress_in_place_fn: CompressInPlaceFn, compress_xof_fn
 #[test]
 fn test_compress_portable() {
     test_compress_fn(
-        crate::ffi::blake3_compress_in_place_portable,
-        crate::ffi::blake3_compress_xof_portable,
+        crate::ffi::iroh_blake3_compress_in_place_portable,
+        crate::ffi::iroh_blake3_compress_xof_portable,
     );
 }
 
@@ -163,8 +163,8 @@ fn test_compress_sse2() {
         return;
     }
     test_compress_fn(
-        crate::ffi::x86::blake3_compress_in_place_sse2,
-        crate::ffi::x86::blake3_compress_xof_sse2,
+        crate::ffi::x86::iroh_blake3_compress_in_place_sse2,
+        crate::ffi::x86::iroh_blake3_compress_xof_sse2,
     );
 }
 
@@ -175,8 +175,8 @@ fn test_compress_sse41() {
         return;
     }
     test_compress_fn(
-        crate::ffi::x86::blake3_compress_in_place_sse41,
-        crate::ffi::x86::blake3_compress_xof_sse41,
+        crate::ffi::x86::iroh_blake3_compress_in_place_sse41,
+        crate::ffi::x86::iroh_blake3_compress_xof_sse41,
     );
 }
 
@@ -187,8 +187,8 @@ fn test_compress_avx512() {
         return;
     }
     test_compress_fn(
-        crate::ffi::x86::blake3_compress_in_place_avx512,
-        crate::ffi::x86::blake3_compress_xof_avx512,
+        crate::ffi::x86::iroh_blake3_compress_in_place_avx512,
+        crate::ffi::x86::iroh_blake3_compress_xof_avx512,
     );
 }
 

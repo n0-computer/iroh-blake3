@@ -34,7 +34,7 @@ pub unsafe fn hash_many<const N: usize>(
 // implementation for 1x compression. However, we expose the portable Rust
 // implementation here instead, to avoid linking in unnecessary code.
 #[no_mangle]
-pub extern "C" fn blake3_compress_in_place_portable(
+pub extern "C" fn iroh_blake3_compress_in_place_portable(
     cv: *mut u32,
     block: *const u8,
     block_len: u8,
