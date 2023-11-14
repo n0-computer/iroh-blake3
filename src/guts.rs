@@ -156,7 +156,11 @@ mod test {
             }
         }
 
-        let data = (0..1024 << 4).map(|i| i as u8).collect::<Vec<_>>();
+        let mut data = [0u8; 1024 << 4];
+        for (i, d) in data.iter_mut().enumerate() {
+            *d = i as u8;
+        }
+        let data = data;
         for block_log in 0..4 {
             let block_size = 1usize << block_log;
             let block_size_u64 = block_size as u64;
