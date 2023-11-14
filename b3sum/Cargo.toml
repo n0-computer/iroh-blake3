@@ -1,5 +1,5 @@
 [package]
-name = "b3sum"
+name = "iroh-b3sum"
 version = "1.4.1"
 authors = ["Jack O'Connor <oconnor663@gmail.com>"]
 description = "a command line implementation of the BLAKE3 hash function"
@@ -9,13 +9,13 @@ readme = "README.md"
 edition = "2021"
 
 [features]
-neon = ["blake3/neon"]
-prefer_intrinsics = ["blake3/prefer_intrinsics"]
-pure = ["blake3/pure"]
+neon = ["iroh-blake3/neon"]
+prefer_intrinsics = ["iroh-blake3/prefer_intrinsics"]
+pure = ["iroh-blake3/pure"]
 
 [dependencies]
 anyhow = "1.0.25"
-blake3 = { version = "1", path = "..", features = ["rayon"] }
+iroh-blake3 = { version = "1", path = "..", features = ["rayon"] }
 clap = { version = "4.0.8", features = ["derive", "wrap_help"] }
 hex = "0.4.0"
 memmap2 = "0.7.0"

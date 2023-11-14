@@ -6,6 +6,8 @@ use std::io;
 use std::io::prelude::*;
 use std::path::{Path, PathBuf};
 
+use iroh_blake3 as blake3;
+
 #[cfg(test)]
 mod unit_tests;
 
