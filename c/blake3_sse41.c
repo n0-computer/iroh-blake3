@@ -251,7 +251,7 @@ INLINE void compress_pre(__m128i rows[4], const uint32_t cv[8],
   undiagonalize(&rows[0], &rows[2], &rows[3]);
 }
 
-void blake3_compress_in_place_sse41(uint32_t cv[8],
+void iroh_blake3_compress_in_place_sse41(uint32_t cv[8],
                                     const uint8_t block[BLAKE3_BLOCK_LEN],
                                     uint8_t block_len, uint64_t counter,
                                     uint8_t flags) {
@@ -523,7 +523,7 @@ INLINE void hash_one_sse41(const uint8_t *input, size_t blocks,
     if (blocks == 1) {
       block_flags |= flags_end;
     }
-    blake3_compress_in_place_sse41(cv, input, BLAKE3_BLOCK_LEN, counter,
+    iroh_blake3_compress_in_place_sse41(cv, input, BLAKE3_BLOCK_LEN, counter,
                                    block_flags);
     input = &input[BLAKE3_BLOCK_LEN];
     blocks -= 1;
