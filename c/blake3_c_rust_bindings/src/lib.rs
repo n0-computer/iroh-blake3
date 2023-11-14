@@ -198,7 +198,7 @@ pub mod ffi {
                 flags: u8,
                 out: *mut u8,
             );
-            pub fn blake3_hash_many_sse2(
+            pub fn iroh_blake3_hash_many_sse2(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,

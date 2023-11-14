@@ -253,7 +253,7 @@ void blake3_hash_many(const uint8_t *const *inputs, size_t num_inputs,
 #endif
 #if !defined(BLAKE3_NO_SSE2)
   if (features & SSE2) {
-    blake3_hash_many_sse2(inputs, num_inputs, blocks, key, counter,
+    iroh_blake3_hash_many_sse2(inputs, num_inputs, blocks, key, counter,
                           increment_counter, flags, flags_start, flags_end,
                           out);
     return;

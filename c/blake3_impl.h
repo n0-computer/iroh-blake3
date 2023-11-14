@@ -222,7 +222,7 @@ void iroh_blake3_compress_xof_sse2(const uint32_t cv[8],
                               const uint8_t block[BLAKE3_BLOCK_LEN],
                               uint8_t block_len, uint64_t counter,
                               uint8_t flags, uint8_t out[64]);
-void blake3_hash_many_sse2(const uint8_t *const *inputs, size_t num_inputs,
+void iroh_blake3_hash_many_sse2(const uint8_t *const *inputs, size_t num_inputs,
                            size_t blocks, const uint32_t key[8],
                            uint64_t counter, bool increment_counter,
                            uint8_t flags, uint8_t flags_start,

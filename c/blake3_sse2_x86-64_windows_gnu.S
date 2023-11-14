@@ -1,14 +1,14 @@
 .intel_syntax noprefix
-.global blake3_hash_many_sse2
-.global _blake3_hash_many_sse2
+.global iroh_blake3_hash_many_sse2
+.global _iroh_blake3_hash_many_sse2
 .global iroh_blake3_compress_in_place_sse2
 .global _iroh_blake3_compress_in_place_sse2
 .global iroh_blake3_compress_xof_sse2
 .global _iroh_blake3_compress_xof_sse2
 .section .text
         .p2align  6
-_blake3_hash_many_sse2:
-blake3_hash_many_sse2:
+_iroh_blake3_hash_many_sse2:
+iroh_blake3_hash_many_sse2:
         push    r15
         push    r14
         push    r13

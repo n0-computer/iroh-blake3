@@ -323,7 +323,7 @@ fn test_hash_many_sse2() {
     if !crate::sse2_detected() {
         return;
     }
-    test_hash_many_fn(crate::ffi::x86::blake3_hash_many_sse2);
+    test_hash_many_fn(crate::ffi::x86::iroh_blake3_hash_many_sse2);
 }
 
 #[test]
