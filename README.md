@@ -118,7 +118,7 @@ your `Cargo.toml`. Here's an example of hashing some input bytes:
 
 ```rust
 // Hash an input all at once.
-let hash1 = blake3::hash(b"foobarbaz");
+let hash1 = iroh_blake3::hash(b"foobarbaz");
 
 // Hash an input incrementally.
 let mut hasher = blake3::Hasher::new();
