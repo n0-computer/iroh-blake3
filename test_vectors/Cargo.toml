@@ -7,7 +7,7 @@ edition = "2021"
 neon = ["iroh-blake3/neon"]
 prefer_intrinsics = ["iroh-blake3/prefer_intrinsics"]
 pure = ["iroh-blake3/pure"]
-m
+
 [dependencies]
 # If you ever change these path dependencies, you'll probably need to update
 # cross_test.sh, or CI will break. I'm sorry >.<
