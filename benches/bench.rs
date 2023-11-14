@@ -4,9 +4,9 @@ extern crate test;
 
 use arrayref::array_ref;
 use arrayvec::ArrayVec;
-use blake3::guts::{BLOCK_LEN, CHUNK_LEN};
-use blake3::platform::{Platform, MAX_SIMD_DEGREE};
-use blake3::OUT_LEN;
+use iroh_blake3::guts::{BLOCK_LEN, CHUNK_LEN};
+use iroh_blake3::platform::{Platform, MAX_SIMD_DEGREE};
+use iroh_blake3::OUT_LEN;
 use rand::prelude::*;
 use test::Bencher;
 
@@ -102,7 +102,7 @@ fn bench_many_chunks_fn(b: &mut Bencher, platform: Platform) {
             &input_arrays[..],
             &[0; 8],
             0,
-            blake3::IncrementCounter::Yes,
+            iroh_blake3::IncrementCounter::Yes,
             0,
             0,
             0,
@@ -169,7 +169,7 @@ fn bench_many_parents_fn(b: &mut Bencher, platform: Platform) {
             &input_arrays[..],
             &[0; 8],
             0,
-            blake3::IncrementCounter::No,
+            iroh_blake3::IncrementCounter::No,
             0,
             0,
             0,
@@ -220,7 +220,7 @@ fn bench_many_parents_neon(b: &mut Bencher) {
 
 fn bench_atonce(b: &mut Bencher, len: usize) {
     let mut input = RandomInput::new(b, len);
-    b.iter(|| blake3::hash(input.get()));
+    b.iter(|| iroh_blake3::hash(input.get()));
 }
 
 #[bench]
@@ -285,7 +285,7 @@ fn bench_atonce_1024_kib(b: &mut Bencher) {
 
 fn bench_incremental(b: &mut Bencher, len: usize) {
     let mut input = RandomInput::new(b, len);
-    b.iter(|| blake3::Hasher::new().update(input.get()).finalize());
+    b.iter(|| iroh_blake3::Hasher::new().update(input.get()).finalize());
 }
 
 #[bench]
@@ -422,7 +422,11 @@ fn bench_reference_1024_kib(b: &mut Bencher) {
 #[cfg(feature = "rayon")]
 fn bench_rayon(b: &mut Bencher, len: usize) {
     let mut input = RandomInput::new(b, len);
-    b.iter(|| blake3::Hasher::new().update_rayon(input.get()).finalize());
+    b.iter(|| {
+        iroh_blake3::Hasher::new()
+            .update_rayon(input.get())
+            .finalize()
+    });
 }
 
 #[bench]
@@ -508,7 +512,7 @@ fn bench_two_updates(b: &mut Bencher) {
     let len = 65536;
     let mut input = RandomInput::new(b, len);
     b.iter(|| {
-        let mut hasher = blake3::Hasher::new();
+        let mut hasher = iroh_blake3::Hasher::new();
         let input = input.get();
         hasher.update(&input[..1]);
         hasher.update(&input[1..]);
