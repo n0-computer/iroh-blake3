@@ -261,7 +261,7 @@ void iroh_blake3_compress_in_place_sse41(uint32_t cv[8],
   storeu(xorv(rows[1], rows[3]), (uint8_t *)&cv[4]);
 }
 
-void blake3_compress_xof_sse41(const uint32_t cv[8],
+void iroh_blake3_compress_xof_sse41(const uint32_t cv[8],
                                const uint8_t block[BLAKE3_BLOCK_LEN],
                                uint8_t block_len, uint64_t counter,
                                uint8_t flags, uint8_t out[64]) {
