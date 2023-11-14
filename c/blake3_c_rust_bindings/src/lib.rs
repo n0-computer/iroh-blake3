@@ -227,7 +227,7 @@ pub mod ffi {
                 flags: u8,
                 out: *mut u8,
             );
-            pub fn blake3_hash_many_sse41(
+            pub fn iroh_blake3_hash_many_sse41(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,
@@ -241,7 +241,7 @@ pub mod ffi {
             );
 
             // AVX2 low level functions
-            pub fn blake3_hash_many_avx2(
+            pub fn iroh_blake3_hash_many_avx2(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,
@@ -270,7 +270,7 @@ pub mod ffi {
                 counter: u64,
                 flags: u8,
             );
-            pub fn blake3_hash_many_avx512(
+            pub fn iroh_blake3_hash_many_avx512(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,

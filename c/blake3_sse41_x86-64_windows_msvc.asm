@@ -1,5 +1,5 @@
-public _blake3_hash_many_sse41
-public blake3_hash_many_sse41
+public _iroh_blake3_hash_many_sse41
+public iroh_blake3_hash_many_sse41
 public iroh_blake3_compress_in_place_sse41
 public _iroh_blake3_compress_in_place_sse41
 public iroh_blake3_compress_xof_sse41
@@ -8,8 +8,8 @@ public _iroh_blake3_compress_xof_sse41
 _TEXT   SEGMENT ALIGN(16) 'CODE'
 
 ALIGN   16
-blake3_hash_many_sse41 PROC
-_blake3_hash_many_sse41 PROC
+iroh_blake3_hash_many_sse41 PROC
+_iroh_blake3_hash_many_sse41 PROC
         push    r15
         push    r14
         push    r13
@@ -1797,8 +1797,8 @@ endroundloop1:
         movups  xmmword ptr [rbx], xmm0
         movups  xmmword ptr [rbx+10H], xmm1
         jmp     unwind
-_blake3_hash_many_sse41 ENDP
-blake3_hash_many_sse41 ENDP
+_iroh_blake3_hash_many_sse41 ENDP
+iroh_blake3_hash_many_sse41 ENDP
 
 iroh_blake3_compress_in_place_sse41 PROC
 _iroh_blake3_compress_in_place_sse41 PROC

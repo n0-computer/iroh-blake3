@@ -1,5 +1,5 @@
-public _blake3_hash_many_avx512
-public blake3_hash_many_avx512
+public _iroh_blake3_hash_many_avx512
+public iroh_blake3_hash_many_avx512
 public iroh_blake3_compress_in_place_avx512
 public _iroh_blake3_compress_in_place_avx512
 public iroh_blake3_compress_xof_avx512
@@ -8,8 +8,8 @@ public _iroh_blake3_compress_xof_avx512
 _TEXT   SEGMENT ALIGN(16) 'CODE'
 
 ALIGN   16
-blake3_hash_many_avx512 PROC
-_blake3_hash_many_avx512 PROC
+iroh_blake3_hash_many_avx512 PROC
+_iroh_blake3_hash_many_avx512 PROC
         push    r15
         push    r14
         push    r13
@@ -2404,8 +2404,8 @@ endroundloop1:
         vmovdqu xmmword ptr [rbx+10H], xmm1
         jmp     unwind
 
-_blake3_hash_many_avx512 ENDP
-blake3_hash_many_avx512 ENDP
+_iroh_blake3_hash_many_avx512 ENDP
+iroh_blake3_hash_many_avx512 ENDP
 
 ALIGN 16
 iroh_blake3_compress_in_place_avx512 PROC

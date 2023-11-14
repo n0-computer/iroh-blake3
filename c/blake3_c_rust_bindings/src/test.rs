@@ -332,7 +332,7 @@ fn test_hash_many_sse41() {
     if !crate::sse41_detected() {
         return;
     }
-    test_hash_many_fn(crate::ffi::x86::blake3_hash_many_sse41);
+    test_hash_many_fn(crate::ffi::x86::iroh_blake3_hash_many_sse41);
 }
 
 #[test]
@@ -341,7 +341,7 @@ fn test_hash_many_avx2() {
     if !crate::avx2_detected() {
         return;
     }
-    test_hash_many_fn(crate::ffi::x86::blake3_hash_many_avx2);
+    test_hash_many_fn(crate::ffi::x86::iroh_blake3_hash_many_avx2);
 }
 
 #[test]
@@ -350,7 +350,7 @@ fn test_hash_many_avx512() {
     if !crate::avx512_detected() {
         return;
     }
-    test_hash_many_fn(crate::ffi::x86::blake3_hash_many_avx512);
+    test_hash_many_fn(crate::ffi::x86::iroh_blake3_hash_many_avx512);
 }
 
 #[test]

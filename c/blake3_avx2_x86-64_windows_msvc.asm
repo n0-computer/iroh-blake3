@@ -1,11 +1,11 @@
-public _blake3_hash_many_avx2
-public blake3_hash_many_avx2
+public _iroh_blake3_hash_many_avx2
+public iroh_blake3_hash_many_avx2
 
 _TEXT   SEGMENT ALIGN(16) 'CODE'
 
 ALIGN   16
-blake3_hash_many_avx2 PROC
-_blake3_hash_many_avx2 PROC
+iroh_blake3_hash_many_avx2 PROC
+_iroh_blake3_hash_many_avx2 PROC
         push    r15
         push    r14
         push    r13
@@ -1785,8 +1785,8 @@ endroundloop1:
         vmovdqu xmmword ptr [rbx+10H], xmm1
         jmp     unwind
 
-_blake3_hash_many_avx2 ENDP
-blake3_hash_many_avx2 ENDP
+_iroh_blake3_hash_many_avx2 ENDP
+iroh_blake3_hash_many_avx2 ENDP
 _TEXT ENDS
 
 _RDATA SEGMENT READONLY PAGE ALIAS(".rdata") 'CONST'

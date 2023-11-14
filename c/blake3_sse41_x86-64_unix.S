@@ -13,8 +13,8 @@
 #endif
 
 .intel_syntax noprefix
-.global blake3_hash_many_sse41
-.global _blake3_hash_many_sse41
+.global iroh_blake3_hash_many_sse41
+.global _iroh_blake3_hash_many_sse41
 .global iroh_blake3_compress_in_place_sse41
 .global _iroh_blake3_compress_in_place_sse41
 .global iroh_blake3_compress_xof_sse41
@@ -25,8 +25,8 @@
 .section .text
 #endif
         .p2align  6
-_blake3_hash_many_sse41:
-blake3_hash_many_sse41:
+_iroh_blake3_hash_many_sse41:
+iroh_blake3_hash_many_sse41:
         _CET_ENDBR
         push    r15
         push    r14

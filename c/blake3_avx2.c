@@ -287,7 +287,7 @@ void blake3_hash8_avx2(const uint8_t *const *inputs, size_t blocks,
 }
 
 #if !defined(BLAKE3_NO_SSE41)
-void blake3_hash_many_sse41(const uint8_t *const *inputs, size_t num_inputs,
+void iroh_blake3_hash_many_sse41(const uint8_t *const *inputs, size_t num_inputs,
                             size_t blocks, const uint32_t key[8],
                             uint64_t counter, bool increment_counter,
                             uint8_t flags, uint8_t flags_start,
@@ -300,7 +300,7 @@ void blake3_hash_many_portable(const uint8_t *const *inputs, size_t num_inputs,
                                uint8_t flags_end, uint8_t *out);
 #endif
 
-void blake3_hash_many_avx2(const uint8_t *const *inputs, size_t num_inputs,
+void iroh_blake3_hash_many_avx2(const uint8_t *const *inputs, size_t num_inputs,
                            size_t blocks, const uint32_t key[8],
                            uint64_t counter, bool increment_counter,
                            uint8_t flags, uint8_t flags_start,
@@ -316,7 +316,7 @@ void blake3_hash_many_avx2(const uint8_t *const *inputs, size_t num_inputs,
     out = &out[DEGREE * BLAKE3_OUT_LEN];
   }
 #if !defined(BLAKE3_NO_SSE41)
-  blake3_hash_many_sse41(inputs, num_inputs, blocks, key, counter,
+  iroh_blake3_hash_many_sse41(inputs, num_inputs, blocks, key, counter,
                          increment_counter, flags, flags_start, flags_end, out);
 #else
   blake3_hash_many_portable(inputs, num_inputs, blocks, key, counter,

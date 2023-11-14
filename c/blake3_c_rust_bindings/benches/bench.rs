@@ -167,7 +167,7 @@ fn bench_many_chunks_sse41(b: &mut Bencher) {
     }
     bench_many_chunks_fn(
         b,
-        blake3_c_rust_bindings::ffi::x86::blake3_hash_many_sse41,
+        blake3_c_rust_bindings::ffi::x86::iroh_blake3_hash_many_sse41,
         4,
     );
 }
@@ -180,7 +180,7 @@ fn bench_many_chunks_avx2(b: &mut Bencher) {
     }
     bench_many_chunks_fn(
         b,
-        blake3_c_rust_bindings::ffi::x86::blake3_hash_many_avx2,
+        blake3_c_rust_bindings::ffi::x86::iroh_blake3_hash_many_avx2,
         8,
     );
 }
@@ -192,7 +192,7 @@ fn bench_many_chunks_avx512(b: &mut Bencher) {
     }
     bench_many_chunks_fn(
         b,
-        blake3_c_rust_bindings::ffi::x86::blake3_hash_many_avx512,
+        blake3_c_rust_bindings::ffi::x86::iroh_blake3_hash_many_avx512,
         16,
     );
 }
@@ -259,7 +259,7 @@ fn bench_many_parents_sse41(b: &mut Bencher) {
     }
     bench_many_parents_fn(
         b,
-        blake3_c_rust_bindings::ffi::x86::blake3_hash_many_sse41,
+        blake3_c_rust_bindings::ffi::x86::iroh_blake3_hash_many_sse41,
         4,
     );
 }
@@ -272,7 +272,7 @@ fn bench_many_parents_avx2(b: &mut Bencher) {
     }
     bench_many_parents_fn(
         b,
-        blake3_c_rust_bindings::ffi::x86::blake3_hash_many_avx2,
+        blake3_c_rust_bindings::ffi::x86::iroh_blake3_hash_many_avx2,
         8,
     );
 }
@@ -284,7 +284,7 @@ fn bench_many_parents_avx512(b: &mut Bencher) {
     }
     bench_many_parents_fn(
         b,
-        blake3_c_rust_bindings::ffi::x86::blake3_hash_many_avx512,
+        blake3_c_rust_bindings::ffi::x86::iroh_blake3_hash_many_avx512,
         16,
     );
 }
