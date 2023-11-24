@@ -1,14 +1,14 @@
 .intel_syntax noprefix
-.global blake3_hash_many_sse2
-.global _blake3_hash_many_sse2
-.global blake3_compress_in_place_sse2
-.global _blake3_compress_in_place_sse2
-.global blake3_compress_xof_sse2
-.global _blake3_compress_xof_sse2
+.global iroh_blake3_hash_many_sse2
+.global _iroh_blake3_hash_many_sse2
+.global iroh_blake3_compress_in_place_sse2
+.global _iroh_blake3_compress_in_place_sse2
+.global iroh_blake3_compress_xof_sse2
+.global _iroh_blake3_compress_xof_sse2
 .section .text
         .p2align  6
-_blake3_hash_many_sse2:
-blake3_hash_many_sse2:
+_iroh_blake3_hash_many_sse2:
+iroh_blake3_hash_many_sse2:
         push    r15
         push    r14
         push    r13
@@ -2035,8 +2035,8 @@ blake3_hash_many_sse2:
         jmp     4b
 
 .p2align 6
-blake3_compress_in_place_sse2:
-_blake3_compress_in_place_sse2:
+iroh_blake3_compress_in_place_sse2:
+_iroh_blake3_compress_in_place_sse2:
         sub     rsp, 120
         movdqa  xmmword ptr [rsp], xmm6
         movdqa  xmmword ptr [rsp+0x10], xmm7
@@ -2165,8 +2165,8 @@ _blake3_compress_in_place_sse2:
 
 
 .p2align 6
-_blake3_compress_xof_sse2:
-blake3_compress_xof_sse2:
+_iroh_blake3_compress_xof_sse2:
+iroh_blake3_compress_xof_sse2:
         sub     rsp, 120
         movdqa  xmmword ptr [rsp], xmm6
         movdqa  xmmword ptr [rsp+0x10], xmm7

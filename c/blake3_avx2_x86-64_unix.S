@@ -13,16 +13,16 @@
 #endif
 
 .intel_syntax noprefix
-.global _blake3_hash_many_avx2
-.global blake3_hash_many_avx2
+.global _iroh_blake3_hash_many_avx2
+.global iroh_blake3_hash_many_avx2
 #ifdef __APPLE__
 .text
 #else
 .section .text
 #endif
         .p2align  6
-_blake3_hash_many_avx2:
-blake3_hash_many_avx2:
+_iroh_blake3_hash_many_avx2:
+iroh_blake3_hash_many_avx2:
         _CET_ENDBR
         push    r15
         push    r14

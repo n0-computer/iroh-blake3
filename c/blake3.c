@@ -81,7 +81,7 @@ INLINE output_t make_output(const uint32_t input_cv[8],
 INLINE void output_chaining_value(const output_t *self, uint8_t cv[32]) {
   uint32_t cv_words[8];
   memcpy(cv_words, self->input_cv, 32);
-  blake3_compress_in_place(cv_words, self->block, self->block_len,
+  iroh_blake3_compress_in_place(cv_words, self->block, self->block_len,
                            self->counter, self->flags);
   store_cv_words(cv, cv_words);
 }
@@ -92,7 +92,7 @@ INLINE void output_root_bytes(const output_t *self, uint64_t seek, uint8_t *out,
   size_t offset_within_block = seek % 64;
   uint8_t wide_buf[64];
   while (out_len > 0) {
-    blake3_compress_xof(self->input_cv, self->block, self->block_len,
+    iroh_blake3_compress_xof(self->input_cv, self->block, self->block_len,
                         output_block_counter, self->flags | ROOT, wide_buf);
     size_t available_bytes = 64 - offset_within_block;
     size_t memcpy_len;
@@ -116,7 +116,7 @@ INLINE void chunk_state_update(blake3_chunk_state *self, const uint8_t *input,
     input += take;
     input_len -= take;
     if (input_len > 0) {
-      blake3_compress_in_place(
+      iroh_blake3_compress_in_place(
           self->cv, self->buf, BLAKE3_BLOCK_LEN, self->chunk_counter,
           self->flags | chunk_state_maybe_start_flag(self));
       self->blocks_compressed += 1;
@@ -126,7 +126,7 @@ INLINE void chunk_state_update(blake3_chunk_state *self, const uint8_t *input,
   }
 
   while (input_len > BLAKE3_BLOCK_LEN) {
-    blake3_compress_in_place(self->cv, input, BLAKE3_BLOCK_LEN,
+    iroh_blake3_compress_in_place(self->cv, input, BLAKE3_BLOCK_LEN,
                              self->chunk_counter,
                              self->flags | chunk_state_maybe_start_flag(self));
     self->blocks_compressed += 1;
@@ -261,7 +261,7 @@ INLINE size_t compress_parents_parallel(const uint8_t *child_chaining_values,
 // Why not just have the caller split the input on the first update(), instead
 // of implementing this special rule? Because we don't want to limit SIMD or
 // multi-threading parallelism for that update().
-static size_t blake3_compress_subtree_wide(const uint8_t *input,
+static size_t iroh_blake3_compress_subtree_wide(const uint8_t *input,
                                            size_t input_len,
                                            const uint32_t key[8],
                                            uint64_t chunk_counter,
@@ -301,9 +301,9 @@ static size_t blake3_compress_subtree_wide(const uint8_t *input,
 
   // Recurse! If this implementation adds multi-threading support in the
   // future, this is where it will go.
-  size_t left_n = blake3_compress_subtree_wide(input, left_input_len, key,
+  size_t left_n = iroh_blake3_compress_subtree_wide(input, left_input_len, key,
                                                chunk_counter, flags, cv_array);
-  size_t right_n = blake3_compress_subtree_wide(
+  size_t right_n = iroh_blake3_compress_subtree_wide(
       right_input, right_input_len, key, right_chunk_counter, flags, right_cvs);
 
   // The special case again. If simd_degree=1, then we'll have left_n=1 and
@@ -338,7 +338,7 @@ INLINE void compress_subtree_to_parent_node(
 #endif
 
   uint8_t cv_array[MAX_SIMD_DEGREE_OR_2 * BLAKE3_OUT_LEN];
-  size_t num_cvs = blake3_compress_subtree_wide(input, input_len, key,
+  size_t num_cvs = iroh_blake3_compress_subtree_wide(input, input_len, key,
                                                 chunk_counter, flags, cv_array);
   assert(num_cvs <= MAX_SIMD_DEGREE_OR_2);
 

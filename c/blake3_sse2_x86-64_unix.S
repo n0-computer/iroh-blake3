@@ -13,20 +13,20 @@
 #endif
 
 .intel_syntax noprefix
-.global blake3_hash_many_sse2
-.global _blake3_hash_many_sse2
-.global blake3_compress_in_place_sse2
-.global _blake3_compress_in_place_sse2
-.global blake3_compress_xof_sse2
-.global _blake3_compress_xof_sse2
+.global iroh_blake3_hash_many_sse2
+.global _iroh_blake3_hash_many_sse2
+.global iroh_blake3_compress_in_place_sse2
+.global _iroh_blake3_compress_in_place_sse2
+.global iroh_blake3_compress_xof_sse2
+.global _iroh_blake3_compress_xof_sse2
 #ifdef __APPLE__
 .text
 #else
 .section .text
 #endif
         .p2align  6
-_blake3_hash_many_sse2:
-blake3_hash_many_sse2:
+_iroh_blake3_hash_many_sse2:
+iroh_blake3_hash_many_sse2:
         _CET_ENDBR
         push    r15
         push    r14
@@ -2024,8 +2024,8 @@ blake3_hash_many_sse2:
         jmp     4b
 
 .p2align 6
-blake3_compress_in_place_sse2:
-_blake3_compress_in_place_sse2:
+iroh_blake3_compress_in_place_sse2:
+_iroh_blake3_compress_in_place_sse2:
         _CET_ENDBR
         movups  xmm0, xmmword ptr [rdi]
         movups  xmm1, xmmword ptr [rdi+0x10]
@@ -2136,8 +2136,8 @@ _blake3_compress_in_place_sse2:
         ret
 
 .p2align 6
-blake3_compress_xof_sse2:
-_blake3_compress_xof_sse2:
+iroh_blake3_compress_xof_sse2:
+_iroh_blake3_compress_xof_sse2:
         _CET_ENDBR
         movups  xmm0, xmmword ptr [rdi]
         movups  xmm1, xmmword ptr [rdi+0x10]

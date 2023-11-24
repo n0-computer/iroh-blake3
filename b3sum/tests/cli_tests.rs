@@ -4,8 +4,10 @@ use std::fs;
 use std::io::prelude::*;
 use std::path::PathBuf;
 
+use iroh_blake3 as blake3;
+
 pub fn b3sum_exe() -> PathBuf {
-    env!("CARGO_BIN_EXE_b3sum").into()
+    env!("CARGO_BIN_EXE_iroh-b3sum").into()
 }
 
 #[test]

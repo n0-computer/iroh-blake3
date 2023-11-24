@@ -312,7 +312,7 @@ void blake3_hash4_neon(const uint8_t *const *inputs, size_t blocks,
  * ----------------------------------------------------------------------------
  */
 
-void blake3_compress_in_place_portable(uint32_t cv[8],
+void iroh_blake3_compress_in_place_portable(uint32_t cv[8],
                                        const uint8_t block[BLAKE3_BLOCK_LEN],
                                        uint8_t block_len, uint64_t counter,
                                        uint8_t flags);
@@ -331,7 +331,7 @@ INLINE void hash_one_neon(const uint8_t *input, size_t blocks,
     // TODO: Implement compress_neon. However note that according to
     // https://github.com/BLAKE2/BLAKE2/commit/7965d3e6e1b4193438b8d3a656787587d2579227,
     // compress_neon might not be any faster than compress_portable.
-    blake3_compress_in_place_portable(cv, input, BLAKE3_BLOCK_LEN, counter,
+    iroh_blake3_compress_in_place_portable(cv, input, BLAKE3_BLOCK_LEN, counter,
                                       block_flags);
     input = &input[BLAKE3_BLOCK_LEN];
     blocks -= 1;

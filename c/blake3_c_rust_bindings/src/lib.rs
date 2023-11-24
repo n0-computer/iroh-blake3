@@ -150,14 +150,14 @@ pub mod ffi {
         pub fn blake3_hasher_reset(self_: *mut blake3_hasher);
 
         // portable low-level functions
-        pub fn blake3_compress_in_place_portable(
+        pub fn iroh_blake3_compress_in_place_portable(
             cv: *mut u32,
             block: *const u8,
             block_len: u8,
             counter: u64,
             flags: u8,
         );
-        pub fn blake3_compress_xof_portable(
+        pub fn iroh_blake3_compress_xof_portable(
             cv: *const u32,
             block: *const u8,
             block_len: u8,
@@ -183,14 +183,14 @@ pub mod ffi {
     pub mod x86 {
         extern "C" {
             // SSE2 low level functions
-            pub fn blake3_compress_in_place_sse2(
+            pub fn iroh_blake3_compress_in_place_sse2(
                 cv: *mut u32,
                 block: *const u8,
                 block_len: u8,
                 counter: u64,
                 flags: u8,
             );
-            pub fn blake3_compress_xof_sse2(
+            pub fn iroh_blake3_compress_xof_sse2(
                 cv: *const u32,
                 block: *const u8,
                 block_len: u8,
@@ -198,7 +198,7 @@ pub mod ffi {
                 flags: u8,
                 out: *mut u8,
             );
-            pub fn blake3_hash_many_sse2(
+            pub fn iroh_blake3_hash_many_sse2(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,
@@ -212,14 +212,14 @@ pub mod ffi {
             );
 
             // SSE4.1 low level functions
-            pub fn blake3_compress_in_place_sse41(
+            pub fn iroh_blake3_compress_in_place_sse41(
                 cv: *mut u32,
                 block: *const u8,
                 block_len: u8,
                 counter: u64,
                 flags: u8,
             );
-            pub fn blake3_compress_xof_sse41(
+            pub fn iroh_blake3_compress_xof_sse41(
                 cv: *const u32,
                 block: *const u8,
                 block_len: u8,
@@ -227,7 +227,7 @@ pub mod ffi {
                 flags: u8,
                 out: *mut u8,
             );
-            pub fn blake3_hash_many_sse41(
+            pub fn iroh_blake3_hash_many_sse41(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,
@@ -241,7 +241,7 @@ pub mod ffi {
             );
 
             // AVX2 low level functions
-            pub fn blake3_hash_many_avx2(
+            pub fn iroh_blake3_hash_many_avx2(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,
@@ -255,7 +255,7 @@ pub mod ffi {
             );
 
             // AVX-512 low level functions
-            pub fn blake3_compress_xof_avx512(
+            pub fn iroh_blake3_compress_xof_avx512(
                 cv: *const u32,
                 block: *const u8,
                 block_len: u8,
@@ -263,14 +263,14 @@ pub mod ffi {
                 flags: u8,
                 out: *mut u8,
             );
-            pub fn blake3_compress_in_place_avx512(
+            pub fn iroh_blake3_compress_in_place_avx512(
                 cv: *mut u32,
                 block: *const u8,
                 block_len: u8,
                 counter: u64,
                 flags: u8,
             );
-            pub fn blake3_hash_many_avx512(
+            pub fn iroh_blake3_hash_many_avx512(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,

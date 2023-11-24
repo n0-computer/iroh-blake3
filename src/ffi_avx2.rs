@@ -18,7 +18,7 @@ pub unsafe fn hash_many<const N: usize>(
     // array, but the C implementations don't. Even though this is an unsafe
     // function, assert the bounds here.
     assert!(out.len() >= inputs.len() * OUT_LEN);
-    ffi::blake3_hash_many_avx2(
+    ffi::iroh_blake3_hash_many_avx2(
         inputs.as_ptr() as *const *const u8,
         inputs.len(),
         N / BLOCK_LEN,
@@ -34,7 +34,7 @@ pub unsafe fn hash_many<const N: usize>(
 
 pub mod ffi {
     extern "C" {
-        pub fn blake3_hash_many_avx2(
+        pub fn iroh_blake3_hash_many_avx2(
             inputs: *const *const u8,
             num_inputs: usize,
             blocks: usize,

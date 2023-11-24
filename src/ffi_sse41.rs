@@ -8,7 +8,13 @@ pub unsafe fn compress_in_place(
     counter: u64,
     flags: u8,
 ) {
-    ffi::blake3_compress_in_place_sse41(cv.as_mut_ptr(), block.as_ptr(), block_len, counter, flags)
+    ffi::iroh_blake3_compress_in_place_sse41(
+        cv.as_mut_ptr(),
+        block.as_ptr(),
+        block_len,
+        counter,
+        flags,
+    )
 }
 
 // Unsafe because this may only be called on platforms supporting SSE4.1.
@@ -20,7 +26,7 @@ pub unsafe fn compress_xof(
     flags: u8,
 ) -> [u8; 64] {
     let mut out = [0u8; 64];
-    ffi::blake3_compress_xof_sse41(
+    ffi::iroh_blake3_compress_xof_sse41(
         cv.as_ptr(),
         block.as_ptr(),
         block_len,
@@ -46,7 +52,7 @@ pub unsafe fn hash_many<const N: usize>(
     // array, but the C implementations don't. Even though this is an unsafe
     // function, assert the bounds here.
     assert!(out.len() >= inputs.len() * OUT_LEN);
-    ffi::blake3_hash_many_sse41(
+    ffi::iroh_blake3_hash_many_sse41(
         inputs.as_ptr() as *const *const u8,
         inputs.len(),
         N / BLOCK_LEN,
@@ -62,14 +68,14 @@ pub unsafe fn hash_many<const N: usize>(
 
 pub mod ffi {
     extern "C" {
-        pub fn blake3_compress_in_place_sse41(
+        pub fn iroh_blake3_compress_in_place_sse41(
             cv: *mut u32,
             block: *const u8,
             block_len: u8,
             counter: u64,
             flags: u8,
         );
-        pub fn blake3_compress_xof_sse41(
+        pub fn iroh_blake3_compress_xof_sse41(
             cv: *const u32,
             block: *const u8,
             block_len: u8,
@@ -77,7 +83,7 @@ pub mod ffi {
             flags: u8,
             out: *mut u8,
         );
-        pub fn blake3_hash_many_sse41(
+        pub fn iroh_blake3_hash_many_sse41(
             inputs: *const *const u8,
             num_inputs: usize,
             blocks: usize,

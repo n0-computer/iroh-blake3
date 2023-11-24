@@ -6,10 +6,10 @@
 //! ```
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
 //! // Hash an input all at once.
-//! let hash1 = blake3::hash(b"foobarbaz");
+//! let hash1 = iroh_blake3::hash(b"foobarbaz");
 //!
 //! // Hash an input incrementally.
-//! let mut hasher = blake3::Hasher::new();
+//! let mut hasher = iroh_blake3::Hasher::new();
 //! hasher.update(b"foo");
 //! hasher.update(b"bar");
 //! hasher.update(b"baz");
@@ -933,18 +933,18 @@ fn parent_node_output(
 /// ```
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// // Hash an input incrementally.
-/// let mut hasher = blake3::Hasher::new();
+/// let mut hasher = iroh_blake3::Hasher::new();
 /// hasher.update(b"foo");
 /// hasher.update(b"bar");
 /// hasher.update(b"baz");
-/// assert_eq!(hasher.finalize(), blake3::hash(b"foobarbaz"));
+/// assert_eq!(hasher.finalize(), iroh_blake3::hash(b"foobarbaz"));
 ///
 /// // Extended output. OutputReader also implements Read and Seek.
 /// # #[cfg(feature = "std")] {
 /// let mut output = [0; 1000];
 /// let mut output_reader = hasher.finalize_xof();
 /// output_reader.fill(&mut output);
-/// assert_eq!(&output[..32], blake3::hash(b"foobarbaz").as_bytes());
+/// assert_eq!(&output[..32], iroh_blake3::hash(b"foobarbaz").as_bytes());
 /// # }
 /// # Ok(())
 /// # }

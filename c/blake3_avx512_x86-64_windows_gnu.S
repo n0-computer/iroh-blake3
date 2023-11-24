@@ -1,16 +1,16 @@
 .intel_syntax noprefix
 
-.global _blake3_hash_many_avx512
-.global blake3_hash_many_avx512
-.global blake3_compress_in_place_avx512
-.global _blake3_compress_in_place_avx512
-.global blake3_compress_xof_avx512
-.global _blake3_compress_xof_avx512
+.global _iroh_blake3_hash_many_avx512
+.global iroh_blake3_hash_many_avx512
+.global iroh_blake3_compress_in_place_avx512
+.global _iroh_blake3_compress_in_place_avx512
+.global iroh_blake3_compress_xof_avx512
+.global _iroh_blake3_compress_xof_avx512
 
 .section .text
 .p2align  6
-_blake3_hash_many_avx512:
-blake3_hash_many_avx512:
+_iroh_blake3_hash_many_avx512:
+iroh_blake3_hash_many_avx512:
         push    r15
         push    r14
         push    r13
@@ -2398,8 +2398,8 @@ blake3_hash_many_avx512:
 
 
 .p2align 6
-_blake3_compress_in_place_avx512:
-blake3_compress_in_place_avx512:
+_iroh_blake3_compress_in_place_avx512:
+iroh_blake3_compress_in_place_avx512:
         sub     rsp, 72
         vmovdqa xmmword ptr [rsp], xmm6
         vmovdqa xmmword ptr [rsp+0x10], xmm7
@@ -2491,8 +2491,8 @@ blake3_compress_in_place_avx512:
 
 
 .p2align 6
-_blake3_compress_xof_avx512:
-blake3_compress_xof_avx512:
+_iroh_blake3_compress_xof_avx512:
+iroh_blake3_compress_xof_avx512:
         sub     rsp, 72
         vmovdqa xmmword ptr [rsp], xmm6
         vmovdqa xmmword ptr [rsp+0x10], xmm7

@@ -1,10 +1,10 @@
 .intel_syntax noprefix
-.global _blake3_hash_many_avx2
-.global blake3_hash_many_avx2
+.global _iroh_blake3_hash_many_avx2
+.global iroh_blake3_hash_many_avx2
 .section .text
         .p2align  6
-_blake3_hash_many_avx2:
-blake3_hash_many_avx2:
+_iroh_blake3_hash_many_avx2:
+iroh_blake3_hash_many_avx2:
         push    r15
         push    r14
         push    r13

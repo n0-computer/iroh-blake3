@@ -1,5 +1,7 @@
 use std::path::Path;
 
+use iroh_blake3 as blake3;
+
 #[test]
 fn test_parse_check_line() {
     // =========================
