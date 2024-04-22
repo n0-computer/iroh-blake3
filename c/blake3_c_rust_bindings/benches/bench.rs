@@ -203,7 +203,7 @@ fn bench_many_chunks_neon(b: &mut Bencher) {
     // When "neon" is on, NEON support is assumed.
     bench_many_chunks_fn(
         b,
-        blake3_c_rust_bindings::ffi::neon::blake3_hash_many_neon,
+        blake3_c_rust_bindings::ffi::neon::iroh_blake3_hash_many_neon,
         4,
     );
 }
@@ -295,7 +295,7 @@ fn bench_many_parents_neon(b: &mut Bencher) {
     // When "neon" is on, NEON support is assumed.
     bench_many_parents_fn(
         b,
-        blake3_c_rust_bindings::ffi::neon::blake3_hash_many_neon,
+        blake3_c_rust_bindings::ffi::neon::iroh_blake3_hash_many_neon,
         4,
     );
 }

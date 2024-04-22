@@ -228,7 +228,7 @@ pub fn test_hash_many_fn(hash_many_fn: HashManyFn) {
         }
         let mut portable_chunks_out = [0; NUM_INPUTS * OUT_LEN];
         unsafe {
-            crate::ffi::blake3_hash_many_portable(
+            crate::ffi::iroh_blake3_hash_many_portable(
                 chunks.as_ptr() as _,
                 chunks.len(),
                 CHUNK_LEN / BLOCK_LEN,
@@ -272,7 +272,7 @@ pub fn test_hash_many_fn(hash_many_fn: HashManyFn) {
         }
         let mut portable_parents_out = [0; NUM_INPUTS * OUT_LEN];
         unsafe {
-            crate::ffi::blake3_hash_many_portable(
+            crate::ffi::iroh_blake3_hash_many_portable(
                 parents.as_ptr() as _,
                 parents.len(),
                 1,
@@ -314,7 +314,7 @@ pub fn test_hash_many_fn(hash_many_fn: HashManyFn) {
 // Testing the portable implementation against itself is circular, but why not.
 #[test]
 fn test_hash_many_portable() {
-    test_hash_many_fn(crate::ffi::blake3_hash_many_portable);
+    test_hash_many_fn(crate::ffi::iroh_blake3_hash_many_portable);
 }
 
 #[test]
@@ -356,7 +356,7 @@ fn test_hash_many_avx512() {
 #[test]
 #[cfg(feature = "neon")]
 fn test_hash_many_neon() {
-    test_hash_many_fn(crate::ffi::neon::blake3_hash_many_neon);
+    test_hash_many_fn(crate::ffi::neon::iroh_blake3_hash_many_neon);
 }
 
 #[test]
