@@ -165,7 +165,7 @@ pub mod ffi {
             flags: u8,
             out: *mut u8,
         );
-        pub fn blake3_hash_many_portable(
+        pub fn iroh_blake3_hash_many_portable(
             inputs: *const *const u8,
             num_inputs: usize,
             blocks: usize,
@@ -289,7 +289,7 @@ pub mod ffi {
     pub mod neon {
         extern "C" {
             // NEON low level functions
-            pub fn blake3_hash_many_neon(
+            pub fn iroh_blake3_hash_many_neon(
                 inputs: *const *const u8,
                 num_inputs: usize,
                 blocks: usize,

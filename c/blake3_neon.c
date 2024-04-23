@@ -245,7 +245,7 @@ INLINE void load_counters4(uint64_t counter, bool increment_counter,
       counter_high(counter + (mask & 2)), counter_high(counter + (mask & 3)));
 }
 
-void blake3_hash4_neon(const uint8_t *const *inputs, size_t blocks,
+void iroh_blake3_hash4_neon(const uint8_t *const *inputs, size_t blocks,
                        const uint32_t key[8], uint64_t counter,
                        bool increment_counter, uint8_t flags,
                        uint8_t flags_start, uint8_t flags_end, uint8_t *out) {
@@ -340,13 +340,13 @@ INLINE void hash_one_neon(const uint8_t *input, size_t blocks,
   memcpy(out, cv, BLAKE3_OUT_LEN);
 }
 
-void blake3_hash_many_neon(const uint8_t *const *inputs, size_t num_inputs,
+void iroh_blake3_hash_many_neon(const uint8_t *const *inputs, size_t num_inputs,
                            size_t blocks, const uint32_t key[8],
                            uint64_t counter, bool increment_counter,
                            uint8_t flags, uint8_t flags_start,
                            uint8_t flags_end, uint8_t *out) {
   while (num_inputs >= 4) {
-    blake3_hash4_neon(inputs, blocks, key, counter, increment_counter, flags,
+    iroh_blake3_hash4_neon(inputs, blocks, key, counter, increment_counter, flags,
                       flags_start, flags_end, out);
     if (increment_counter) {
       counter += 4;

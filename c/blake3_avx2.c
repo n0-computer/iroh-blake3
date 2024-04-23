@@ -293,7 +293,7 @@ void iroh_blake3_hash_many_sse41(const uint8_t *const *inputs, size_t num_inputs
                             uint8_t flags, uint8_t flags_start,
                             uint8_t flags_end, uint8_t *out);
 #else
-void blake3_hash_many_portable(const uint8_t *const *inputs, size_t num_inputs,
+void iroh_blake3_hash_many_portable(const uint8_t *const *inputs, size_t num_inputs,
                                size_t blocks, const uint32_t key[8],
                                uint64_t counter, bool increment_counter,
                                uint8_t flags, uint8_t flags_start,
@@ -319,7 +319,7 @@ void iroh_blake3_hash_many_avx2(const uint8_t *const *inputs, size_t num_inputs,
   iroh_blake3_hash_many_sse41(inputs, num_inputs, blocks, key, counter,
                          increment_counter, flags, flags_start, flags_end, out);
 #else
-  blake3_hash_many_portable(inputs, num_inputs, blocks, key, counter,
+  iroh_blake3_hash_many_portable(inputs, num_inputs, blocks, key, counter,
                             increment_counter, flags, flags_start, flags_end,
                             out);
 #endif
