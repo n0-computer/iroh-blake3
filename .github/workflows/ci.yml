@@ -34,7 +34,7 @@ jobs:
           # https://github.com/rust-lang/libs-team/issues/72.
           # This test target is here so that we notice if we accidentally bump
           # the MSRV, but it's not a promise that we won't bump it.
-          "1.66.1",
+          "1.75",
         ]
 
     steps:
@@ -177,7 +177,6 @@ jobs:
           - i686-unknown-linux-musl
           - armv7-unknown-linux-gnueabihf
           - aarch64-unknown-linux-gnu
-          - mips-unknown-linux-gnu
 
     steps:
     - uses: actions/checkout@v3
