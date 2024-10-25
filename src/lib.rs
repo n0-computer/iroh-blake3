@@ -267,6 +267,40 @@ impl Hash {
         }
         Ok(Hash::from(hash_bytes))
     }
+
+    /// Returns the ordering between `self` and `rhs` as an i8.
+    /// Values correspond to the Ordering enum:
+    ///   -1 is Less
+    ///   0 is Equal
+    ///   1 is Greater
+    #[inline]
+    const fn cmp(lhs: &Self, rhs: &Self) -> i8 {
+        // Implementation is based on https://github.com/RustCrypto/crypto-bigint/blob/master/src/uint/cmp.rs#L80
+
+        let mut i = 0;
+        let mut borrow = 0;
+        let mut diff = 0;
+
+        while i < 32 {
+            let (w, b) = sbb(rhs.0[i], lhs.0[i], borrow);
+            diff |= w;
+            borrow = b;
+            i += 1;
+        }
+        let sgn = ((borrow & 2) as i8) - 1;
+
+        ((diff != 0) as i8) * sgn
+    }
+}
+
+/// Computes `lhs - (rhs + borrow)`, returning the result along with the new borrow.
+#[inline(always)]
+pub const fn sbb(lhs: u8, rhs: u8, borrow: u8) -> (u8, u8) {
+    let a = lhs as u16;
+    let b = rhs as u16;
+    let borrow = (borrow >> (8 - 1)) as u16;
+    let ret = a.wrapping_sub(b + borrow);
+    (ret as u8, (ret >> 8) as u8)
 }
 
 impl From<[u8; OUT_LEN]> for Hash {
@@ -316,6 +350,26 @@ impl PartialEq<[u8]> for Hash {
 }
 
 impl Eq for Hash {}
+
+/// This implementation is constant-time.
+impl Ord for Hash {
+    fn cmp(&self, other: &Self) -> cmp::Ordering {
+        let c = Self::cmp(self, other);
+        match c {
+            -1 => cmp::Ordering::Less,
+            0 => cmp::Ordering::Equal,
+            _ => cmp::Ordering::Greater,
+        }
+    }
+}
+
+/// This implementation is constant-time.
+impl PartialOrd for Hash {
+    #[inline]
+    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
 
 impl fmt::Display for Hash {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
