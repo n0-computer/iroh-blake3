@@ -73,6 +73,9 @@ extern crate zeroize_crate as zeroize; // Needed because `zeroize::Zeroize` assu
 #[cfg(test)]
 mod test;
 
+#[cfg(feature = "serde")]
+mod serde;
+
 // The guts module is for incremental use cases like the `bao` crate that need
 // to explicitly compute chunk and parent chaining values. It is semi-stable
 // and likely to keep working, but largely undocumented and not intended for
