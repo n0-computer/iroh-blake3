@@ -1,4 +1,4 @@
-use crate::{CVBytes, CVWords, IncrementCounter, BLOCK_LEN, CHUNK_LEN, OUT_LEN};
+use crate::{CVBytes, CVWords, Hash, IncrementCounter, BLOCK_LEN, CHUNK_LEN, OUT_LEN};
 use arrayref::array_ref;
 use arrayvec::ArrayVec;
 use core::usize;
@@ -688,4 +688,15 @@ fn test_zeroize() {
         crate::Platform::Portable
     ));
     assert_eq!(output_reader.position_within_block, 0);
+}
+
+
+#[test]
+fn test_ordering() {
+    let a = Hash::from_bytes([0u8; 32]);
+    let b = Hash::from_bytes([1u8; 32]);
+
+    assert_eq!(a.cmp(&b), core::cmp::Ordering::Less);
+    assert_eq!(a.cmp(&a), core::cmp::Ordering::Equal);
+    assert_eq!(b.cmp(&a), core::cmp::Ordering::Greater);
 }
