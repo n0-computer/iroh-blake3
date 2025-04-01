@@ -1,3 +1,5 @@
+# DEPRECATED
+
 This crate is a fork of https://github.com/BLAKE3-team/BLAKE3 that extends the
 guts API to allow hashing entire non-root subtrees with a non-zero start chunk
 offset.

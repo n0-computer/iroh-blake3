@@ -1,8 +1,8 @@
 [package]
 name = "iroh-blake3"
-version = "1.4.5"
+version = "1.4.6"
 authors = ["Jack O'Connor <oconnor663@gmail.com>", "Samuel Neves"]
-description = "the BLAKE3 hash function"
+description = "DEPRECATED - Use the blake3 crate instead; this fork is no longer needed."
 repository = "https://github.com/BLAKE3-team/BLAKE3"
 license = "CC0-1.0 OR Apache-2.0"
 documentation = "https://docs.rs/blake3"
