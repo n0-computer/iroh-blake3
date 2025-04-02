@@ -1,3 +1,13 @@
+# DEPRECATED
+
+This crate is a fork of https://github.com/BLAKE3-team/BLAKE3 that extends the
+guts API to allow hashing entire non-root subtrees with a non-zero start chunk
+offset.
+
+As of blake3 version 1.8.0, this functionality is
+[included](https://docs.rs/blake3/latest/blake3/hazmat/index.html) in the
+upstream crate. So you should **not use** this crate anymore!
+
 # <a href="#"><img src="media/BLAKE3.svg" alt="BLAKE3" height=50></a>
 
 BLAKE3 is a cryptographic hash function that is:
